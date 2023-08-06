@@ -5,25 +5,33 @@ import { createElement } from 'react';
 const date = new Date().getFullYear().toString(); // императивный, шаги
 
 const App = () => {
-	//компоненты реакта по сути декларативные. Как и сам html
-	return (
-		<div className="App">
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-				<p>
-					Edit <code>src/App.js</code> and save to reload.
-				</p>
-				<a
-					className="App-link"
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Learn React
-				</a>
-				<div>year now: {date}</div>
-			</header>
-		</div>
+	// такое описание компонента куда более императивное конечно чем jsx
+	return createElement(
+		'div',
+		'App',
+		createElement(
+			'header',
+			{ className: 'App-header' },
+			createElement('img', { src: logo, className: 'App-logo', alt: 'logo' }),
+			createElement(
+				'p',
+				{},
+				'Edit ',
+				createElement('code', {}, 'src/App.js and save to reload'),
+				createElement(
+					'a',
+					{
+						className: 'App-link',
+						href: 'https://reactjs.org',
+						target: '_blank',
+						rel: 'noopener noreferrer',
+					},
+					createElement('br'),
+					'Learn React',
+				),
+				createElement('div', {}, `year now:${date}`),
+			),
+		),
 	);
 };
 
